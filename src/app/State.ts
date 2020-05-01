@@ -2,7 +2,7 @@ import { Map } from 'mapbox-gl';
 
 export class State {
   private isMap: boolean;
-  private currBg = 1;
+  private bg1 = true;
   constructor(
     private map: Map,
     private background1: HTMLDivElement,
@@ -30,9 +30,10 @@ export class State {
   }
 
   showBackground(src: string) {
-    const bg = this.background2;
+    const bg = this.background1;
     bg.style.setProperty('background-image', `url(${src})`);
     bg.classList.add('show');
+    this.background2.classList.remove('show');
   }
 
   hideBackground() {

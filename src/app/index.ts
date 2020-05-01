@@ -50,16 +50,21 @@ async function changeSlides(index: number, forward: boolean) {
   const slide = slides[index];
   if (!slide) return;
 
+  if (slide.slide.getAttribute('data-background-image')) {
+    slide.slide.style.setProperty('background-image', `url(${slide.slide.getAttribute('data-background-image')}`);
+  }
+
   currentSlide = index;
   location.hash = currentSlide.toString();
   if (forward) {
-    slide.slide.style.setProperty('display', '');
     const prevSlide = slides[index - 1];
     if (prevSlide) {
       await prevSlide.moveFrom(prevSlide.slide, state, slide);
       prevSlide.slide.classList.add('hidden');
     }
+    // await wait(300);
     slide.slide.classList.remove('hidden');
+    slide.slide.style.setProperty('display', '');
     playEntranceAnimations(slide.slide);
     slide.moveTo(slide.slide, state, prevSlide);
     // if (prevSlide) {
@@ -67,13 +72,14 @@ async function changeSlides(index: number, forward: boolean) {
     //     prevSlide.slide.style.setProperty('display', 'none');
     // }
   } else {
-    slide.slide.style.setProperty('display', '');
     const prevSlide = slides[index + 1];
     if (prevSlide) {
       await prevSlide.moveFrom(prevSlide.slide, state, slide);
       prevSlide.slide.classList.add('hidden');
     }
+    await wait(300);
     slide.slide.classList.remove('hidden');
+    slide.slide.style.setProperty('display', '');
     playEntranceAnimations(slide.slide);
     slide.moveTo(slide.slide, state, prevSlide);
     // if (prevSlide) {

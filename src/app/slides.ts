@@ -50,18 +50,14 @@ export const slides = [
   ),
   new Slide(
     id<HTMLDivElement>('#slide-section-geography'),
-    (slide, state, next) => {
-      state.showBackground('assets/sakura.jpg');
-    },
+    (slide, state, next) => {},
     (slide, state, next) => {}
   ),
   new Slide(
     id<HTMLDivElement>('#slide-physical-geography'),
     (slide, state, next) => {
-      state.showBackground('assets/mountains.jpg');
     },
     (slide, state, next) => {
-      state.hidePlainBackground();
     }
   ),
   new Slide(
@@ -70,7 +66,6 @@ export const slides = [
       state.showBackground('assets/mountains.jpg');
     },
     (slide, state, next) => {
-      state.hidePlainBackground();
     }
   ),
   new Slide(
@@ -79,7 +74,6 @@ export const slides = [
       state.showBackground('assets/tsunami.jpg');
     },
     (slide, state, next) => {
-      state.hidePlainBackground();
     }
   ),
   new Slide(
@@ -88,7 +82,6 @@ export const slides = [
       state.showBackground('assets/sakurajima.jpg');
     },
     (slide, state, next) => {
-      state.hidePlainBackground();
     }
   ),
   new Slide(
@@ -97,7 +90,6 @@ export const slides = [
       state.showBackground('assets/torii.jpg');
     },
     (slide, state, next) => {
-      state.hidePlainBackground();
     }
   ),
   new Slide(
@@ -108,7 +100,20 @@ export const slides = [
       state.showBackground('assets/fuji-aerial.jpg');
     },
     (slide, state, next) => {
-      state.hidePlainBackground();
+    }
+  ),
+  new Slide(
+    id<HTMLDivElement>('#slide-fuji'),
+    async (slide, state, next) => {
+    },
+    (slide, state, next) => {
+    }
+  ),
+  new Slide(
+    id<HTMLDivElement>('#slide-fuji-art'),
+    async (slide, state, next) => {
+    },
+    (slide, state, next) => {
     }
   ),
 ];

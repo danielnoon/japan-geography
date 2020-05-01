@@ -18,6 +18,8 @@ body {
   width: 100%;
   display: block;
   position: absolute;
+  background-size: cover;
+  background-position: center;
 }
 
 #map,
@@ -74,7 +76,7 @@ body {
 
 .slide[data-slide-type='main-title'] {
   display: flex;
-  background: rgba(200, 220, 200, 0.1);
+  background-color: rgba(200, 220, 200, 0.1);
 }
 
 .slide[data-slide-type='main-title'] .content {
@@ -93,7 +95,7 @@ body {
 }
 
 .slide[data-slide-type='section-title'] {
-  background: rgba(200, 220, 200, 0.1);
+  background-color: rgba(200, 220, 200, 0.1);
 }
 
 .slide[data-slide-type='section-title'] .content {
@@ -108,7 +110,7 @@ body {
 }
 
 .slide[data-slide-type='title-and-content'] {
-  background: rgba(200, 220, 200, 0.5);
+  background-color: rgba(200, 220, 200, 0.5);
   display: flex;
 }
 
