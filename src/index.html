@@ -2,163 +2,66 @@
 <html>
   <head>
     <title>Japanese Geography and Culture</title>
-    <link href="https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@400;700&family=Overpass:wght@300;400;800&display=swap" rel="stylesheet">
-    <style>
-      html,
-      body {
-        width: 100%;
-        height: 100%;
-        margin: 0;
-        padding: 0;
-        overflow: hidden;
-        font-family: 'Overpass', 'M PLUS Rounded 1c', Roboto, 'Noto Sans', sans-serif;
-      }
-
-      #map, #bg1, #bg2, #slide-wrapper, .slide, #loading {
-        height: 100%;
-        width: 100%;
-        display: block;
-        position: absolute;
-      }
-
-      #map, #bg1, #bg2 {
-        z-index: -1;
-      }
-
-      #loading {
-        background-color: aqua;
-        display: flex;
-      }
-
-      @keyframes fade-in {
-        from {
-          opacity: 0;
-        }
-        to {
-          opacity: 1;
-        }
-      }
-
-      .loading-text {
-        margin: auto;
-      }
-
-      .slide.hidden, #loading.hidden {
-        opacity: 0;
-      }
-
-      .slide, #loading {
-        transition: 200ms linear;
-      }
-
-      .slide {
-        animation: fade-in 200ms linear;
-      }
-
-      .slide[data-slide-type="main-title"] {
-        display: flex;
-        background: rgba(200, 220, 200, .1);
-      }
-
-      .slide[data-slide-type="main-title"] .content {
-        margin: auto auto 0 auto;
-        width: 600px;
-        max-width: 100%;
-        opacity: .7;
-      }
-
-      .slide[data-slide-type="main-title"] .content h1 {
-        font-size: 5em;
-      }
-
-      .slide[data-slide-type="main-title"] .content h2 {
-        font-size: 2em;
-      }
-
-      .slide[data-slide-type="section-title"] {
-        background: rgba(200, 220, 200, .1);
-      }
-
-      .slide[data-slide-type="section-title"] .content {
-        height: 100%;
-        display: flex;
-        opacity: .8;
-      }
-
-      .slide[data-slide-type="section-title"] .content h1 {
-        font-size: 4em;
-        margin: auto;
-      }
-
-      .slide[data-slide-type="title-and-content"] {
-        background: rgba(200, 220, 200, .5);
-      }
-
-      h1 {
-        font-weight: 800;
-        margin: 5px;
-        padding: 20px;
-      }
-
-      h2 {
-        margin: 5px;
-        padding: 20px;
-      }
-
-      .background-fuchsia {
-        background-color: #CC397B;
-      }
-
-      @keyframes fade-up {
-        from {
-          transform: translate(0, 50px);
-          opacity: 0;
-        }
-        to {
-          transform: translate(0, 0);
-          opacity: 1;
-        }
-      }
-
-      .animate-fade-in {
-        opacity: 0;
-      }
-
-      .animate-fade-in.animate {
-        opacity: 1;
-        animation: fade-up ease-in-out;
-        animation-duration: var(--animation-duration);
-        animation-delay: var(--animation-delay);
-      }
-
-      #navigation {
-        position: fixed;
-        display: inline;
-        bottom: 0;
-        left: calc(50vw - 0%);
-      }
-    </style>
-    <link href='https://api.mapbox.com/mapbox-gl-js/v1.8.1/mapbox-gl.css' rel='stylesheet' />
+    <link
+      href="https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@400;700&family=Overpass:wght@300;400;800&display=swap"
+      rel="stylesheet"
+    />
+    <link href="assets/styles.css" rel="stylesheet" />
+    <link
+      href="https://api.mapbox.com/mapbox-gl-js/v1.8.1/mapbox-gl.css"
+      rel="stylesheet"
+    />
   </head>
   <body>
+    <img class="preload" src="assets/mountains.jpg" />
+    <img class="preload" src="assets/tsunami.jpg" />
+    <img class="preload" src="assets/sakura.jpg" />
+    <img class="preload" src="assets/fuji-distance.jpg" />
+    <img class="preload" src="assets/fuji-aerial.jpg" />
+    <img class="preload" src="assets/sakurajima.jpg" />
+    <img class="preload" src="assets/torii.jpg" />
+
     <div id="map"></div>
     <div id="bg1"></div>
     <div id="bg2"></div>
     <div id="slide-wrapper">
       <div id="slide-1" class="slide" data-slide-type="main-title">
         <div class="content">
-          <h1 class="animate-in animate-fade-in background-fuchsia" data-animation-delay="700">Japanese Geography and Culture</h1>
-          <h2 class="animate-in animate-fade-in background-fuchsia" data-animation-delay="1000">Daniel Noon</h2>
+          <h1
+            class="animate-in animate-fade-in background-fuchsia"
+            data-animation-delay="700"
+          >
+            Japanese Geography and Culture
+          </h1>
+          <h2
+            class="animate-in animate-fade-in background-fuchsia"
+            data-animation-delay="1000"
+          >
+            Daniel Noon
+          </h2>
         </div>
       </div>
 
-      <div id="slide-section-islands" class="slide" data-slide-type="section-title">
+      <div
+        id="slide-section-islands"
+        class="slide"
+        data-slide-type="section-title"
+      >
         <div class="content">
-          <h1 class="animate-in animate-fade-in background-fuchsia" data-animation-delay="700">The Islands</h1>
+          <h1
+            class="animate-in animate-fade-in background-fuchsia"
+            data-animation-delay="700"
+          >
+            The Islands　島
+          </h1>
         </div>
       </div>
 
-      <div id="slide-hokkaido" class="slide" data-slide-type="title-and-content">
+      <div
+        id="slide-hokkaido"
+        class="slide"
+        data-slide-type="title-and-content"
+      >
         <div class="content">
           <h1 class="title">
             Hokkaido 北海道
@@ -189,52 +92,206 @@
           </div>
         </div>
       </div>
-    </div>
 
-    <div id="slide-kyushu" class="slide" data-slide-type="title-and-content">
-      <div class="content">
-        <h1 class="title">
-          Kyushu 九州
-        </h1>
-        <div class="body">
-          <ul>
-            <li>“Nine Provinces”</li>
-            <li>Southernmost island</li>
-            <li>Subtropic climate</li>
-            <li>Hot summers</li>
-          </ul>
+      <div id="slide-kyushu" class="slide" data-slide-type="title-and-content">
+        <div class="content">
+          <h1 class="title">
+            Kyushu 九州
+          </h1>
+          <div class="body">
+            <ul>
+              <li>“Nine Provinces”</li>
+              <li>Southernmost island</li>
+              <li>Subtropic climate</li>
+              <li>Hot summers</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div id="slide-shikoku" class="slide" data-slide-type="title-and-content">
+        <div class="content">
+          <h1 class="title">
+            Shikoku 四国
+          </h1>
+          <div class="body">
+            <ul>
+              <li>“Fourth Country”</li>
+              <li>Southwest of Honshu</li>
+              <li>Smallest and least populous island</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div
+        id="slide-section-geography"
+        class="slide"
+        data-slide-type="section-title"
+      >
+        <div class="content">
+          <h1
+            class="animate-in animate-fade-in background-fuchsia"
+            data-animation-delay="700"
+          >
+            Geography and Climate　地理と気候
+          </h1>
+        </div>
+      </div>
+
+      <div
+        id="slide-physical-geography"
+        class="slide"
+        data-slide-type="title-and-content"
+      >
+        <div class="content">
+          <h1 class="title">
+            Physical Geography
+          </h1>
+          <div class="body">
+            <ul>
+              <li>
+                Mountainous, many dialects
+              </li>
+              <li>Rivers</li>
+              <li>
+                No one is farther than 70 miles from the sea, fishing
+              </li>
+
+              <li>
+                Flat plains
+                <ul>
+                  <li>Kanto</li>
+                  <li>Rice farming</li>
+                </ul>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div
+        id="slide-climate-variety"
+        class="slide"
+        data-slide-type="title-two-column"
+      >
+        <div class="content">
+          <h1 class="title">
+            Climate Variety
+          </h1>
+          <div class="body">
+            <div class="col-1">
+              <ul>
+                <li>
+                  Hokkaido north
+                  <ul>
+                    <li>Cold Winters</li>
+                    <li>Snow (lots)</li>
+                  </ul>
+                </li>
+                <li>
+                  Shikoku and Kyushu south
+                  <ul>
+                    <li>Warm beaches</li>
+                    <li>Subtropic</li>
+                    <li>Hot summers</li>
+                  </ul>
+                </li>
+                <li>
+                  Tokyo
+                  <ul>
+                    <li>Summers similar to Omaha</li>
+                    <li>Ocean moderation</li>
+                  </ul>
+                </li>
+                <li>Typhoons</li>
+              </ul>
+            </div>
+            <div class="col-2 image-column">
+              <img src="assets/summer.jpg" id="summer" />
+              <img src="assets/winter.jpg" id="winter" />
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div
+        id="slide-seismic-activity"
+        class="slide"
+        data-slide-type="title-and-content"
+      >
+        <div class="content">
+          <h1 class="title">
+            Seismic Activity
+          </h1>
+          <div class="body">
+            <ul>
+              <li>In the Ring of Fire</li>
+              <li>Earthquakes common</li>
+              <li>Tsunami</li>
+              <li>Disasters very common, which builds resiliency</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div
+        id="slide-volcanism"
+        class="slide"
+        data-slide-type="title-and-content"
+      >
+        <div class="content">
+          <h1 class="title">
+            Volcanism
+          </h1>
+          <div class="body">
+            <ul>
+              <li>
+                Hot springs and onsen
+              </li>
+              <li>
+                Volcanoes
+                <ul>
+                  <li>Mt. Fuji</li>
+                  <li>Mt. Tate</li>
+                  <li>Mt. Haku</li>
+                </ul>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div
+        id="slide-section-culture"
+        class="slide"
+        data-slide-type="section-title"
+      >
+        <div class="content">
+          <h1
+            class="animate-in animate-fade-in background-fuchsia"
+            data-animation-delay="700"
+          >
+            Culture　文化
+          </h1>
+        </div>
+      </div>
+
+      <div
+        id="slide-section-fuji"
+        class="slide"
+        data-slide-type="section-title"
+      >
+        <div class="content">
+          <h1
+            class="animate-in animate-fade-in background-fuchsia"
+            data-animation-delay="5500"
+          >
+            Mt. Fuji　富士山
+          </h1>
         </div>
       </div>
     </div>
-
-    <div id="slide-shikoku" class="slide" data-slide-type="title-and-content">
-      <div class="content">
-        <h1 class="title">
-          Shikoku 四国
-        </h1>
-        <div class="body">
-          <ul>
-            <li>“Fourth Country”</li>
-            <li>Southwest of Honshu</li>
-            <li>Smallest and least populous island</li>
-          </ul>
-        </div>
-      </div>
-    </div>
-
-    <div id="slide-climate-variety" class="slide" data-slide-type="title-and-content">
-      <div class="content">
-        <h1 class="title">
-          Climate Variety
-        </h1>
-        <div class="body">
-          <ul>
-            <li>TBC</li>
-          </ul>
-        </div>
-      </div>
-    </div>
-  </div>
 
     <div id="navigation">
       <button id="previous">&lt;</button>
@@ -242,7 +299,7 @@
     </div>
 
     <div id="loading">
-      <span class="loading-text">Loading...</span>
+      <!-- <span class="loading-text">Loading...</span> -->
     </div>
   </body>
 </html>

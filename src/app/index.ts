@@ -5,76 +5,100 @@ import { wait } from './util';
 import { Slide } from './Slide';
 import { playEntranceAnimations } from './animation';
 
-mapboxgl.accessToken = 'pk.eyJ1Ijoic3VwZXJtZWdhZGV4IiwiYSI6ImNqNnc4c242NDFjcG0zMm56MzlqMDk1czMifQ.gFotKrTtsriSfvGxKVzsoA';
+mapboxgl.accessToken =
+  'pk.eyJ1Ijoic3VwZXJtZWdhZGV4IiwiYSI6ImNqNnc4c242NDFjcG0zMm56MzlqMDk1czMifQ.gFotKrTtsriSfvGxKVzsoA';
 
 const map = new Map({
-    container: "map",
-    style: 'mapbox://styles/mapbox/satellite-v9',
-    center: [-100, 40],
-    zoom: 3
+  container: 'map',
+  style: 'mapbox://styles/mapbox/satellite-v9',
+  center: [-100, 40],
+  zoom: 3,
 });
 
-const state = new State(map, document.querySelector<HTMLDivElement>("#bg1")!, document.querySelector<HTMLDivElement>("#bg1")!);
+const state = new State(
+  map,
+  document.querySelector<HTMLDivElement>('#bg1')!,
+  document.querySelector<HTMLDivElement>('#bg2')!
+);
 
-let currentSlide = -1;
+console.log(state);
+
+const hash = parseInt(location.hash.substring(1) || '-1');
+
+let currentSlide = isNaN(hash) ? -1 : hash;
 
 (async () => {
-    
-    
-    document.querySelectorAll<HTMLDivElement>(".slide").forEach(slide => {
-        slide.classList.add("hidden");
-        slide.style.setProperty('display', 'none');
-    });
+  document.querySelectorAll<HTMLDivElement>('.slide').forEach((slide) => {
+    slide.classList.add('hidden');
+    slide.style.setProperty('display', 'none');
+  });
 
-    await wait(200);
-    
-    document.querySelector("#loading")?.classList.add('hidden');
+  await wait(200);
 
-    await wait(200);
+  document.querySelector('#loading')?.classList.add('hidden');
 
-    document.querySelector<HTMLDivElement>("#loading")?.setAttribute('style', 'display: none');
+  await wait(200);
+
+  document
+    .querySelector<HTMLDivElement>('#loading')
+    ?.setAttribute('style', 'display: none');
+
+  changeSlides(currentSlide, true);
 })();
 
 async function changeSlides(index: number, forward: boolean) {
-    const slide = slides[index];
-    if (!slide) return;
+  const slide = slides[index];
+  if (!slide) return;
 
-    currentSlide = index;
-    if (forward) {
-        slide.slide.style.setProperty('display', '');
-        const prevSlide = slides[index - 1];
-        if (prevSlide) {
-            await prevSlide.moveFrom(prevSlide.slide, state, slide);
-            prevSlide.slide.classList.add('hidden');
-        }
-        slide.slide.classList.remove('hidden');
-        playEntranceAnimations(slide.slide);
-        slide.moveTo(slide.slide, state, prevSlide);
-        // if (prevSlide) {
-        //     await wait(1000);
-        //     prevSlide.slide.style.setProperty('display', 'none');
-        // }
-    } else {
-        slide.slide.style.setProperty('display', '');
-        const prevSlide = slides[index + 1];
-        if (prevSlide) {
-            await prevSlide.moveFrom(prevSlide.slide, state, slide);
-            prevSlide.slide.classList.add('hidden');
-        }
-        slide.slide.classList.remove('hidden');
-        playEntranceAnimations(slide.slide);
-        slide.moveTo(slide.slide, state, prevSlide);
-        // if (prevSlide) {
-        //     await wait(1000);
-        //     prevSlide.slide.style.setProperty('display', 'none');
-        // }
+  currentSlide = index;
+  location.hash = currentSlide.toString();
+  if (forward) {
+    slide.slide.style.setProperty('display', '');
+    const prevSlide = slides[index - 1];
+    if (prevSlide) {
+      await prevSlide.moveFrom(prevSlide.slide, state, slide);
+      prevSlide.slide.classList.add('hidden');
     }
+    slide.slide.classList.remove('hidden');
+    playEntranceAnimations(slide.slide);
+    slide.moveTo(slide.slide, state, prevSlide);
+    // if (prevSlide) {
+    //     await wait(1000);
+    //     prevSlide.slide.style.setProperty('display', 'none');
+    // }
+  } else {
+    slide.slide.style.setProperty('display', '');
+    const prevSlide = slides[index + 1];
+    if (prevSlide) {
+      await prevSlide.moveFrom(prevSlide.slide, state, slide);
+      prevSlide.slide.classList.add('hidden');
+    }
+    slide.slide.classList.remove('hidden');
+    playEntranceAnimations(slide.slide);
+    slide.moveTo(slide.slide, state, prevSlide);
+    // if (prevSlide) {
+    //     await wait(1000);
+    //     prevSlide.slide.style.setProperty('display', 'none');
+    // }
+  }
 }
 
-document.querySelector<HTMLButtonElement>('#next')?.addEventListener('click', () => {
+document
+  .querySelector<HTMLButtonElement>('#next')
+  ?.addEventListener('click', () => {
     changeSlides(currentSlide + 1, true);
-});
+  });
 
-document.querySelector<HTMLButtonElement>('#previous')?.addEventListener('click', () => {
+document
+  .querySelector<HTMLButtonElement>('#previous')
+  ?.addEventListener('click', () => {
     changeSlides(currentSlide - 1, false);
-});
+  });
+
+window.onhashchange = function () {
+  const hash = parseInt(location.hash.substring(1) || '-1');
+
+  if (!isNaN(hash)) {
+    changeSlides(hash, true);
+  }
+};
