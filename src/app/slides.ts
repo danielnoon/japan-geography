@@ -17,4 +17,10 @@ export const slides = [
     new Slide(id<HTMLDivElement>('#slide-honshu'), (slide, state, next) => {
         state.setMapCenter([138, 36], 5);
     }, (slide, state, next) => {}),
+    new Slide(id<HTMLDivElement>('#slide-kyushu'), (slide, state, next) => {
+        state.setMapCenter([131, 33], 7);
+    }, (slide, state, next) => {}),
+    new Slide(id<HTMLDivElement>('#slide-shikoku'), (slide, state, next) => {
+        state.setMapCenter([133.5, 33.75], 7);
+    }, (slide, state, next) => {}),
 ]
